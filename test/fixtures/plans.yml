@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  date: 2020-06-01 21:29:20
+  place: MyString
+  client: MyString
+  body: MyString
+  detail: MyText
+  limit: MyString
+
+two:
+  name: MyString
+  date: 2020-06-01 21:29:20
+  place: MyString
+  client: MyString
+  body: MyString
+  detail: MyText
+  limit: MyString
