@@ -1,0 +1,32 @@
+= form_with(model: plan, local: true) do |form|
+  - if plan.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(plan.errors.count, "error")
+        prohibited this plan from being saved:
+      %ul
+        - plan.errors.full_messages.each do |message|
+          %li= message
+  .field
+    = form.label :現場名
+    = form.text_field :name
+  .field
+    = form.label :仮決定日時
+    = form.datetime_select :date
+  .field
+    = form.label :施工場所
+    = form.text_field :place
+  .field
+    = form.label :顧客
+    = form.text_field :client
+  .field
+    = form.label :施工種別
+    = form.text_field :body
+  .field
+    = form.label :備考
+    = form.text_area :detail
+  .field
+    = form.label :希望完了日
+    = form.date_select :limit
+  .actions
+    = form.submit

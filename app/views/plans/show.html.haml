@@ -1,0 +1,25 @@
+%p#notice= notice
+%p
+  %strong 現場名:
+  = @plan.name
+%p
+  %strong 施工予定日:
+  = @plan.date.strftime('%Y/%m/%d')
+%p
+  %strong 施工場所:
+  = @plan.place
+%p
+  %strong 顧客:
+  = @plan.client
+%p
+  %strong 工事種別:
+  = @plan.body
+%p
+  %strong 備考:
+  = @plan.detail
+%p
+  %strong 希望完了日:
+  = @plan.limit.strftime('%m/%d')
+= link_to 'Edit', edit_plan_path(@plan)
+|
+= link_to 'Back', plans_path
