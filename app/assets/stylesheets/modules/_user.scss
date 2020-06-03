@@ -1,0 +1,172 @@
+$main-green: #5DA797;
+$main-black: #414141;
+$main-white: #FFFFFF; 
+$main-pink: #F98A8A;
+
+.account-page {
+  .account-page__inner {
+    width: 980px;
+    margin: 60px auto;
+    padding: 60px;
+    background-color: $main-green;
+    border-radius: 10px;
+
+    .account-page__inner--left, .account-page__inner--right {
+      margin: 0 auto;
+      width: 45%;
+    }
+    &:after {
+      clear: both;
+      content: "";
+      display: block;
+    }
+  }
+
+  .account-page__header {
+    h2 {
+      font-family: ヒラギノ角ゴシック;
+      color: $main-white;
+      margin-bottom: 10px;
+      letter-spacing: 3px;
+      font-size: 40px;
+      font-weight: 200;
+      text-align: center;
+
+      &:after {
+        content: '';
+        display: block;
+        // width: 60px;
+        margin-top: 9px;
+        border-bottom: 1px solid #38aef0;
+      }
+    }
+
+    h5 {
+      margin-bottom: 20px;
+      font-size: 14px;
+      font-weight: 200;
+      text-align: center;
+    }
+    .btn-back {
+      display: flex;
+      width: 100%;
+      margin-bottom: 20px;
+      height: 50px;
+      border: 1px solid $main-pink;
+      border-radius: 20px;
+      .btn {
+        color: #fff;
+        background-color: $main-pink;
+        font-size: 14px;
+        border-radius: 20px;
+        text-decoration: none;
+      }
+      p {
+        color: $main-white;
+        margin: 0 auto;
+        line-height: 50px;
+        font-size: 20px;
+      }
+    }
+  }
+
+  .field {
+    margin-bottom: 30px;
+
+    .field-label {
+      padding: 10px 0;
+      letter-spacing: 1px;
+      font-size: 14px;
+      font-weight: 200;
+
+      i {
+        font-size: 11px;
+      }
+    }
+
+    .field-input {
+      input {
+        border: $main-white  1px solid;
+        width: 100%;
+        padding: 10px;
+        letter-spacing: 1px;
+        margin: 0 auto;
+      }
+    }
+  }
+
+  .btn {
+    background-color: $main-black;
+    color: $main-white;
+    text-decoration: none;
+    display: inline-block;
+    height: 50px;
+    padding: 0 30px;
+    line-height: 50px;
+    letter-spacing: 1px;
+    text-align: center;
+    border: none;
+    border-radius: 5px;
+    margin-left: 40px;
+  }
+
+  input[type='submit'] {
+    float: left;
+    margin-top: 20px;
+    margin-left: 150px;
+    color: #fff;
+    background-color: $main-pink;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .field-label {
+    .field_with_errors {
+      display: inline-block;
+      color: #d65f4c;
+      font-weight: 400;
+    }
+  }
+
+  .field-input {
+    .field_with_errors {
+      position: relative;
+
+      &:after {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 5px;
+        background-color: #d65f4c;
+      }
+    }
+  }
+}
+
+#error_explanation {
+  margin: 20px 0;
+  padding: 20px 30px;
+  border: 1px solid #ddd;
+  border-radius: 2px;
+
+  h2 {
+    margin-bottom: 10px;
+    color: #d65f4c;
+    font-size: 14px;
+  }
+
+  ul {
+    margin: 0;
+    padding-left: 17px;
+    list-style: square;
+  }
+
+  li {
+    margin: 0;
+    padding: 0;
+    font-size: 13px;
+  }
+}
