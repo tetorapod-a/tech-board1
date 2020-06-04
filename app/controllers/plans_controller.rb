@@ -6,6 +6,7 @@ class PlansController < ApplicationController
   # GET /plans.json
   def index
     @plans = Plan.all
+    
   end
 
   # GET /plans/1
@@ -70,6 +71,6 @@ class PlansController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def plan_params
-      params.require(:plan).permit(:name, :date, :place, :client, :body, :detail, :limit)
+      params.require(:plan).permit(:name, :start, :end, :place, :client, :body, :detail, :limit)
     end
 end

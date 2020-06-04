@@ -14,7 +14,8 @@ ActiveRecord::Schema.define(version: 2020_06_02_083814) do
 
   create_table "plans", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
-    t.datetime "date"
+    t.datetime "start"
+    t.datetime "end"
     t.string "place"
     t.string "client"
     t.string "body"

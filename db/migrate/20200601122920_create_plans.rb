@@ -2,7 +2,8 @@ class CreatePlans < ActiveRecord::Migration[5.2]
   def change
     create_table :plans do |t|
       t.string :name, null: false
-      t.datetime :date
+      t.datetime :start
+      t.datetime :end
       t.string :place
       t.string :client
       t.string :body
