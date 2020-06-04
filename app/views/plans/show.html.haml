@@ -4,7 +4,8 @@
   = @plan.name
 %p
   %strong 施工予定日:
-  = @plan.date.strftime('%Y/%m/%d')
+  = @plan.start
+  = @plan.end
 %p
   %strong 施工場所:
   = @plan.place
