@@ -32,6 +32,9 @@ $(function () {
     // ここまでコピペ
 
 
+    
+
+
 
       $('#calendar').fullCalendar({
         // ここにオプションを書いていく
