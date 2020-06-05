@@ -6,6 +6,7 @@ class PlansController < ApplicationController
   # GET /plans.json
   def index
     @plans = Plan.all
+    
   end
 
   # GET /plans/1
@@ -16,6 +17,7 @@ class PlansController < ApplicationController
   # GET /plans/new
   def new
     @plan = Plan.new
+    @plan.users << current_user
   end
 
   # GET /plans/1/edit
@@ -25,11 +27,13 @@ class PlansController < ApplicationController
   # POST /plans
   # POST /plans.json
   def create
+    binding.pry
     @plan = Plan.new(plan_params)
+    
 
     respond_to do |format|
-      if @plan.save
-        format.html { redirect_to @plan, notice: 'Plan was successfully created.' }
+      if @plan.save(plan_params)
+        format.html { redirect_to @plan, notice: '新しい現場が登録されました。' }
         format.json { render :show, status: :created, location: @plan }
       else
         format.html { render :new }
@@ -70,6 +74,6 @@ class PlansController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def plan_params
-      params.require(:plan).permit(:name, :date, :place, :client, :body, :detail, :limit)
+      params.require(:plan).permit(:name, :start, :end, :place, :client, :body, :detail, :limit, user_ids: [])
     end
 end

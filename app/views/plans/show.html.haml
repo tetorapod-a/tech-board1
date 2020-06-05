@@ -4,7 +4,8 @@
   = @plan.name
 %p
   %strong 施工予定日:
-  = @plan.date.strftime('%Y/%m/%d')
+  = @plan.start
+  = @plan.end
 %p
   %strong 施工場所:
   = @plan.place
@@ -20,6 +21,10 @@
 %p
   %strong 希望完了日:
   = @plan.limit.strftime('%m/%d')
+%p
+  %strong 参加者:
+  - @plan.users.each do |user|
+    = user.name
 = link_to 'Edit', edit_plan_path(@plan)
 |
 = link_to 'Back', plans_path
