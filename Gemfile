@@ -71,3 +71,8 @@ gem 'momentjs-rails'
 gem 'jquery-ui-rails'
 
 gem 'pry-rails'
+
+gem 'carrierwave'
+gem 'mini_magick'
+
+gem 'font-awesome-sass'

@@ -1,0 +1,245 @@
+$apple-red: rgb(238, 108, 96);
+$apple-yellow: rgb(246, 195, 81);
+$apple-green: rgb(100, 202, 87);
+
+
+* {
+  box-sizing: border-box;
+}
+
+
+.all {
+  display: flex;
+  justify-content: space-between;
+}
+// ここからicon
+#ba{
+  color: rgb(238, 108, 96);
+  font-size: 13px;
+  margin-left: 7px;
+  cursor: pointer;
+  transition: all .3s;
+}
+#ba:hover{opacity: 0.6;}
+#nami{
+  color: rgb(246, 195, 81);
+  font-size: 13px;
+  margin-left: 7px;
+  cursor: pointer;
+}
+#ex{
+  color: rgb(100, 202, 87);
+  font-size: 13px;
+  margin-left: 7px;
+  cursor: pointer;
+}
+#check{
+  font-size: 15px;
+}
+// ここまでicon
+
+
+.all__side {
+  padding: 5px;
+  background-color: #EAEAE0;
+  width: 12%;
+  
+  height: calc(100vh - 60px);
+  &__header {
+    // margin-bottom: 33px;
+    margin-top: 3px;
+    display: flex;
+    .aaa{
+      width: 100%;
+      height: 20px;
+      margin-left: 15px;
+      background-color: $apple-yellow;
+      opacity: 0.9;
+      border-top-left-radius: 7px;
+      border-top-right-radius: 7px;
+      border-left: 1.4px solid $apple-yellow;
+      border-top: 1.4px solid $apple-yellow;
+  
+    }
+  }
+  // .ccc {
+  //   width: 71px;
+  //   height: 0px;
+  //   border-bottom-right-radius: 10px;
+  //   border-right: 1.4px solid $apple-yellow;
+  //   border-bottom: 1.4px solid $apple-yellow;
+  //   // margin-bottom: 5px;
+  // }
+  .user-statuses__btn {
+    text-align: right;
+    margin-bottom: 10px;
+    background-color: $apple-yellow;
+    opacity: 0.8;
+    border-top-left-radius: 7px;
+    padding-top: 10px;
+    .login_name {
+      margin-right: 10px;
+      padding-bottom: 5px;
+      }
+    p2 {
+      margin-right: 15px;
+      }
+
+    .login_edit{
+      display: flex;
+      padding-bottom: 5px;
+      .logout {
+        background-color: white;
+        display: block;
+        width: 25%;
+        height: 22px;
+        text-align: center;
+        border-radius: 5px;
+        color: $apple-red;
+        border: 2px solid $apple-red;
+        transition: all .3s;
+        margin-left: 3px;
+      }
+      .logout:hover{
+        color: white;
+        border: none;
+        background-color: $apple-red;
+
+      }
+      .edit {
+        background-color: white;
+        display: block;
+        width: 65%;
+        height: 22px;
+        text-align: center;
+        margin: 0 auto;
+        text-align: center;
+        border: 2px solid $apple-green;
+        color: $apple-green;
+        border-radius: 10px;
+        transition: all .3s;
+        text-decoration: none;
+      }
+      .edit:hover {
+        color: white;
+        border: none;
+        background-color: $apple-green;
+      }
+    }
+  }
+  .oritatami{
+    
+    details{
+      
+      background-color: snow;
+      line-height: 40px;
+      border-bottom: 1px solid #ddd;
+      cursor: pointer;
+      transition: all .3s;
+      summary{
+        margin-left: 15px;
+        transition: all .3s;
+      }
+      summary:hover{
+        opacity: 0.8;
+        background-color: $apple-green;
+      }
+  
+      .fav_menu, .index_plan{
+        transition: all .3s;
+        padding-left: 5px;
+        height: 40px;
+        font-size: 0.8em;
+        overflow: scroll;
+        .fav_list, .plan_list{
+          text-decoration: none;
+        }
+      }
+      .fav_menu:hover, .index_plan:hover{
+        background-color: #EEF9FF;
+        opacity: 0.8;
+        padding-left: 15px;
+      }
+      a:hover {
+        background-color: #EAEAE0;
+        color: black;
+      }
+    }
+    
+  }
+}
+
+
+.board {
+  height: calc(100vh - 60px);
+  width: 88%;
+  background-color: #ddd;
+  display: flex;
+  justify-content: space-between;
+  .user_list {
+    margin-top: 58px;
+    width: 15%;
+    text-align: center;
+    &-a, &-b, &-c, &-d, &-e, &-f {
+      height: 107px;
+      line-height: 80px;
+      background-color: cornflowerblue;
+      border: 1px solid #ddd;
+      font-size: 20px;
+      font-weight: bold;
+      padding: 0.4em 0.5em;/*文字の上下 左右の余白*/
+  color: #494949;/*文字色*/
+  background: #f4f4f4;/*背景色*/
+  border-left: solid 10px #7db4e6;/*左線*/
+  border-bottom: solid 3px #d7d7d7;/*下線*/
+    }
+  }
+}
+
+.calendar {
+  width: 90%;
+}
+
+.fc-mon, .fc-tue, .fc-wed, .fc-thu, .fc-fri {
+  background-color: #E1E3E4;
+}
+
+.fc-sat {
+  background-color: #B5CEE4;
+}
+.fc-sun {
+  background-color: #F7C9CE;
+}
+
+.fc-day-number {
+  display: none;
+}
+
+.fc-title {
+  color: white;
+  line-height: 40px;
+  font-size: 14px;
+}
+.fc-time {
+  display: none;
+}
+.fc-event {
+  height: 40px;
+  text-align: center;
+  background: linear-gradient(to right, #26D0CE, #1A2980); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+.fc-event:hover{
+  background: linear-gradient(to right, #1A2980, #26D0CE); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  }
+
+.fc-state-default  {
+  background-color: brown;
+}
+.fc-prev-button:hover {
+  
+}
+#apple{
+  width: 100px;
+  background-color: orange;
+}

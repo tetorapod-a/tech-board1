@@ -1,0 +1,9 @@
+- if current_user.already_favorited?(@plan)
+  = link_to plan_favorite_path(@plan), method: :delete, remote: true do
+    -# = fa_icon 'heart', id: "heart__red"
+    = icon("fas", 'star')
+- else
+  = link_to plan_favorites_path(@plan), method: :post, remote: true do
+    -# = fa_icon 'heart', id: "heart__normal"
+    = icon("far", 'star')
+= @plan.fav_users.count

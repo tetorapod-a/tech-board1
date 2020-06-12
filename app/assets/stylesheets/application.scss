@@ -17,6 +17,17 @@
  */
 
 @import 'reset';
-@import 'plans';
+@import "font-awesome-sprockets";
+@import "font-awesome";
+@import 'modules/color';
 @import 'modules/user';
-@import 'scaffolds';
+@import 'plan/plans';
+@import 'plan/show';
+@import 'plan/form';
+@import 'plan/all';
+@import 'modules/flash.scss';
+@import 'modules/header.scss';
+@import 'user/show';
+
+// @import 'scaffolds';
+

@@ -1,37 +1,136 @@
-= form_with(model: plan, local: true) do |form|
-  - if plan.errors.any?
-    #error_explanation
-      %h2
-        = pluralize(plan.errors.count, "error")
-        prohibited this plan from being saved:
-      %ul
-        - plan.errors.full_messages.each do |message|
-          %li= message
-  .field
-    = form.label :現場名
-    = form.text_field :name
-  .field
-    = form.label :仮決定日時
-    = form.datetime_select :start
-    = form.datetime_select :end
-  .field
-    = form.label :施工場所
-    = form.text_field :place
-  .field
-    = form.label :顧客
-    = form.text_field :client
-  .field
-    = form.label :施工種別
-    = form.text_field :body
-  .field
-    = form.label :備考
-    = form.text_area :detail
-  .field
-    = form.label :希望完了日
-    = form.date_select :limit
-  .actions
-    = form.submit
+.main1
+  = form_with(model: plan, local: true) do |form|
+    - if plan.errors.any?
+      #error_explanation
+        %h2
+          = pluralize(plan.errors.count, "error")
+          prohibited this plan from being saved:
+        %ul
+          - plan.errors.full_messages.each do |message|
+            %li= message
+    .main1__edit
+      .limit
+        .field1
+          %p1
+            希望完了日
+          = form.date_field :limit, default: Date.today
+          .actions
+            = form.submit
 
-  .user_box
-    = form.collection_check_boxes :user_ids, User.all, :id, :name
+        .field
+          = form.label :仮決定日時
+          = form.datetime_select :start, default: Date.today + 8.hour
+          = form.datetime_select :end, :include_blank => true
+
+    .main1__info
+      .main1__info__left
+        .main1__info__left-name
+          %p1
+            現場名を入力してください
+          %p2
+            .field
+              = form.text_field :name
+        .main1__info__left-client
+          %p1
+            顧客情報を入力してください
+          %p2
+            .field
+              = form.text_field :client
+      .main1__info__right
+        .main1__info__right-user
+          %p1
+            作成者：
+          %p2
+            = current_user.name
+        .main1__info__right-place
+          %p1
+            施工場所を入力してください
+          %p2
+            .field
+              = form.text_field :place
+
+    .main1__work
+      .main1__work__left
+        %p1
+          施工種別を入力してください
+        .main1__work__left-1
+          .field
+            = form.text_area :body1
+        .main1__work__left-2
+          .field
+            = form.text_field :body2
+        .main1__work__left-3
+          .field
+            = form.text_field :body3
+        .main1__work__left-4
+          .field
+            = form.text_field :body4
+
+
+
+
+      .main1__work__right
+        .field
+          = form.text_field :place_url
+
+
+    .main1__note
+      %p3
+        備考・現場状況を入力してください
+      .main1__note-site
+        .field
+          = form.text_area :detail
+
+
+      .main1__note-member
+        %p3
+          決定メンバーを選択してください
+        .list
+          = form.collection_check_boxes :user_ids, User.all, :id, :name
+          
+
+
+-# = form_with(model: plan, local: true) do |form|
+-#   - if plan.errors.any?
+-#     #error_explanation
+-#       %h2
+-#         = pluralize(plan.errors.count, "error")
+-#         prohibited this plan from being saved:
+-#       %ul
+-#         - plan.errors.full_messages.each do |message|
+-#           %li= message
+-#   .field
+-#     = form.label :現場名
+-#     = form.text_field :name
+  -# .field
+  -#   = form.label :仮決定日時
+  -#   = form.datetime_select :start
+  -#   = form.datetime_select :end
+-#   .field
+-#     = form.label :施工場所
+-#     = form.text_field :place
+-#     = form.text_field :place_url
+-#   .field
+-#     = form.label :顧客
+-#     = form.text_field :client
+-#   .field
+-#     = form.label :施工種別
+-#     = form.text_field :body1
+-#     %br
+-#     = form.text_field :body2
+-#     %br
+-#     = form.text_field :body3
+-#     %br
+-#     = form.text_field :body4
+-#   .field
+-#     = form.label :備考
+-#     = form.text_area :detail
+-#   .field
+-#     = form.label :希望完了日
+-#     = form.date_select :limit
+-#   .actions
+-#     = form.submit
+
+-#   .user_box
+-#     = form.collection_check_boxes :user_ids, User.all, :id, :name
 

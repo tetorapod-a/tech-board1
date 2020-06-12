@@ -37,13 +37,32 @@ $(function () {
 
       // ここにオプションを書いていく
       $('#calendar').fullCalendar({
+        
+
+        eventMouseover: function(plan, jsEvent, view) { 
+          if (view.name !== 'agendaDay') { 
+          $(jsEvent.target).attr('title', plan.title); 
+          } 
+          // alert(plan.body1)
+         }, 
+
+        // イベントを落としたら
+        eventDrop: function(plan, delta, revertFunc, jsEvent, ui, view) {
+          // ドラッグ後の日付にデータ更新する
+          moveSchedule(plan.id, plan.start.format('YYYY-MM-DD'), plan.end.format('YYYY-MM-DD'));
+      },
+      
+
+      
         eventClick: function(Event, jsEvent, view) {
- 
-        alert('イベント名: ' + Event.name + '\n座標: ' + jsEvent.pageX + ',' + jsEvent.pageY + '\nスケジュール: ' + view.name);
- 
+          // confirm キャンセルを表示
+        var res = confirm('イベント名: ' + Event.name + '\n内容1: ' + Event.body1); 
+        if (res == true){}
+        else {
+        
+        }
         // change the border color just for fun
         $(this).css('border-color', 'red');
- 
     },
 
         
@@ -76,7 +95,7 @@ $(function () {
         height: 700,
         
         firstDay : 1,
-        events: '/plans.json',
+        
         header: {
           left: 'prev,next today',
           center: 'title',
@@ -91,6 +110,7 @@ $(function () {
         droppable: true,
         dragRevertDuration: 0,
         backgroundColor: '#E1E3E4',
+        events: '/plans.json',
         
         
         

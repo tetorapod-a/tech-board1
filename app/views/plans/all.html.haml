@@ -1,0 +1,32 @@
+.plans
+  %p#notice= notice
+  %h1 施工依頼一覧
+  %table
+    %thead
+      %tr
+        %th 現場名
+        %th 作成日時
+        %th 施工場所
+        %th 客先担当者
+        %th 工事内容
+        %th 備考
+        %th 希望完了日時
+        %th{:colspan => "3"}
+    %tbody
+      - @plans.each do |plan|
+        %tr
+          %td= plan.name
+          %td= plan.created_at.strftime('%Y/%m/%d')
+          %td= plan.place
+          %td= plan.client
+          %td= plan.body1
+          %td= plan.detail
+          %td= plan.limit.strftime('%m/%d')
+          %td= link_to 'Show', plan
+          %td= link_to 'Edit', edit_plan_path(plan)
+          %td= link_to 'Destroy', plan, method: :delete, data: { confirm: 'Are you sure?' }
+  %br/
+.plans__new
+  = link_to 'New Plan', new_plan_path
+
+

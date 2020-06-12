@@ -1,17 +1,26 @@
 class PlansController < ApplicationController
   before_action :set_plan, only: [:show, :edit, :update, :destroy]
+  before_action :move_to_new_session, except: [:index, :show]
   
+  def all 
+  @plans = Plan.all
+  end
 
   # GET /plans
   # GET /plans.json
   def index
     @plans = Plan.all
+    @newplan = Plan.all.order("id DESC")
+
     
   end
 
   # GET /plans/1
   # GET /plans/1.json
   def show
+    @comment = Comment.new
+    @comments = @plan.comments.includes(:user)
+    @favorites =Favorite.new
   end
 
   # GET /plans/new
@@ -27,7 +36,7 @@ class PlansController < ApplicationController
   # POST /plans
   # POST /plans.json
   def create
-    binding.pry
+
     @plan = Plan.new(plan_params)
     
 
@@ -47,7 +56,7 @@ class PlansController < ApplicationController
   def update
     respond_to do |format|
       if @plan.update(plan_params)
-        format.html { redirect_to @plan, notice: 'Plan was successfully updated.' }
+        format.html { redirect_to @plan, notice: '変更を更新しました.' }
         format.json { render :show, status: :ok, location: @plan }
       else
         format.html { render :edit }
@@ -74,6 +83,11 @@ class PlansController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def plan_params
-      params.require(:plan).permit(:name, :start, :end, :place, :client, :body, :detail, :limit, user_ids: [])
+      params.require(:plan).permit(:name, :start, :end, :place, :place_url, :client, :body1, :body2, :body3, :body4, :detail, :limit, user_ids: [])
     end
+
+    def move_to_new_session
+      redirect_to new_user_session_path unless user_signed_in?
+    end
+
 end

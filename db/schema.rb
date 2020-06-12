@@ -10,15 +10,40 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_04_075225) do
+ActiveRecord::Schema.define(version: 2020_06_08_061531) do
+
+  create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.text "content", null: false
+    t.bigint "user_id"
+    t.bigint "plan_id"
+    t.string "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["plan_id"], name: "index_comments_on_plan_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "favorites", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "plan_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["plan_id"], name: "index_favorites_on_plan_id"
+    t.index ["user_id", "plan_id"], name: "index_favorites_on_user_id_and_plan_id", unique: true
+    t.index ["user_id"], name: "index_favorites_on_user_id"
+  end
 
   create_table "plans", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "start"
     t.datetime "end"
     t.string "place"
+    t.text "place_url"
     t.string "client"
-    t.string "body"
+    t.string "body1"
+    t.string "body2"
+    t.string "body3"
+    t.string "body4"
     t.text "detail"
     t.date "limit"
     t.datetime "created_at", null: false
@@ -50,6 +75,10 @@ ActiveRecord::Schema.define(version: 2020_06_04_075225) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "comments", "plans"
+  add_foreign_key "comments", "users"
+  add_foreign_key "favorites", "plans"
+  add_foreign_key "favorites", "users"
   add_foreign_key "user_plans", "plans"
   add_foreign_key "user_plans", "users"
 end

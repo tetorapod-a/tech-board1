@@ -5,15 +5,16 @@ $main-pink: #F98A8A;
 
 .account-page {
   .account-page__inner {
-    width: 980px;
+    width: 600px;
     margin: 60px auto;
-    padding: 60px;
+    padding: 50px;
     background-color: $main-green;
     border-radius: 10px;
 
     .account-page__inner--left, .account-page__inner--right {
       margin: 0 auto;
-      width: 45%;
+      width: 70%;
+      margin-bottom: 30px;
     }
     &:after {
       clear: both;
@@ -21,11 +22,18 @@ $main-pink: #F98A8A;
       display: block;
     }
   }
-
+  .av {
+    display: block;
+    margin: 10px auto;
+    background-color: $main-black;
+  }
   .account-page__header {
+    background-color: $main-white;
+    margin-bottom: 20px;
+    border-radius: 40px;
     h2 {
       font-family: ヒラギノ角ゴシック;
-      color: $main-white;
+      color: $main-black;
       margin-bottom: 10px;
       letter-spacing: 3px;
       font-size: 40px;
@@ -37,7 +45,6 @@ $main-pink: #F98A8A;
         display: block;
         // width: 60px;
         margin-top: 9px;
-        border-bottom: 1px solid #38aef0;
       }
     }
 
@@ -78,6 +85,7 @@ $main-pink: #F98A8A;
       letter-spacing: 1px;
       font-size: 14px;
       font-weight: 200;
+      height: 40px;
 
       i {
         font-size: 11px;
@@ -94,7 +102,19 @@ $main-pink: #F98A8A;
       }
     }
   }
-
+  .render-btn{
+    background-color: $main-green;
+    display: block;
+    border-radius: 3px;
+    width: 110px;
+    margin: 0 auto;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    text-decoration: none;
+    margin-top: 20px;
+    color: $main-white;
+  }
   .btn {
     background-color: $main-black;
     color: $main-white;
@@ -107,17 +127,22 @@ $main-pink: #F98A8A;
     text-align: center;
     border: none;
     border-radius: 5px;
-    margin-left: 40px;
   }
 
   input[type='submit'] {
-    float: left;
-    margin-top: 20px;
-    margin-left: 150px;
+    display: block;
+    width: 250px;
+    margin: 0 auto;
     color: #fff;
-    background-color: $main-pink;
-    border-radius: 5px;
+    background-color: #F0BC08;
+    border-radius: 50px;
     cursor: pointer;
+    text-align: center;
+    transition: all .3s;
+
+  }
+  input[type='submit']:hover {
+    letter-spacing: 6px;
   }
 
   .field-label {

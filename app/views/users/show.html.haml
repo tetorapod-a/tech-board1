@@ -1,0 +1,153 @@
+.mypage
+  .mypage__header
+    .mypage__header__left
+      .mypage__header__left__av
+        .av
+          =image_tag '/assets/man1.png', alt: 'test', height: '100', width: '110', class: 'av1'
+        .u-info
+          .u-name
+            = @user.name
+          .u-phone
+            = "phone:#{@user.phone}"
+        .login_edit
+          = link_to edit_user_path(current_user), class: "edit" do
+            EDIT
+
+      .mypage__header__left__hot
+        .mypage__header__left__hot__top
+          = icon("fas", "fire", id: "fire")
+          Topics
+        .mypage__header__left__hot__rank
+          .mypage__header__left__hot__rank__comments
+            - @plan_comment_ranking.first(1).each do |rank|
+              .comments_num
+                = icon("far", "comment")
+                = rank.comments.count
+              .comments_box
+                = link_to "#{rank.name}", plan_path(id: rank.id), method: :get
+                %p
+                  担当者
+                  - rank.users.first(1).each do |user|
+                    = user.name
+
+          .mypage__header__left__hot__rank__fav
+            - @plan_fav_ranking.first(1).each do |rank|
+              .fav_num
+                = icon("far", "star")
+                = rank.favorites.count
+              .fav_box
+                = link_to "#{rank.name}", plan_path(id: rank.id), method: :get
+                %p
+                  担当者
+                  - rank.users.first(1).each do |user|
+                    = user.name
+
+
+
+    .mypage__header__right
+      .mypage__header__right__top
+        = icon("far", "chart-bar", id: "sig")
+        Your Record
+      .mypage__header__right__body
+        .mypage__header__right__body__left
+          .mypage__header__right__body__left__1
+            .icons
+              = icon("far", "clock", id: "check")
+            .text
+              %p1
+                = @user.plans.count
+              %p2
+                plan作成数
+          .mypage__header__right__body__left__2
+            .icons
+              = icon("far", "comments", id: "check")
+            .text
+              %p1
+                = @user.comments.count
+              %p2
+                あなたのコメント数
+
+        .mypage__header__right__body__right
+
+          .mypage__header__right__body__right__3
+            .icons
+              = icon("far", "star", id: "check")
+            .text
+              %p1
+                = @user.fav_plans.count
+              %p2
+                お気に入り数
+
+          .mypage__header__right__body__right__4
+            .icons
+              = icon("fas", "camera", id: "check")
+            .text
+              %p1
+                = @image_count.count
+                -# = @user.comments.images.count
+              %p2
+                投稿画像数
+
+        
+      
+  .mypage__index
+
+
+.allplans
+  = link_to "allplans", plan_plans_all_path(@plans), method: :get
+.user_name
+  = current_user.name
+.new_plan
+  最新plan(５件表示)
+  - @newplan.first(5).each do |plan|
+    .kk
+      = link_to "#{plan.name}", plan_path(plan.id), method: :get
+.created_plan
+  - @user.plans.each do |plan|
+    = link_to "#{plan.name}", plan_path(plan.id), method: :get
+    = plan.comments.count
+.count_all_plan
+  これまで作ったplanの数
+  = @user.plans.count
+
+.count_comment
+  全てのコメント数
+  = @user.comments.count
+-# .user_comment
+-#   - @user.comments.first(5).each do |comment|
+-#     = comment.content
+-#     .body__image
+-#       = link_to "a", comment.image.url, {"data-lightbox": "a"} if comment.image?
+-#       = image_tag comment.image.url, size: 150, class: 'content__image' if comment.image.present?
+-#       -# = image_tag comment.image.url, {"data-lightbox": "a"}, class: 'content__image' if comment.image.present?
+-#     .info__name
+-#       = comment.user.name
+-#     .info__date
+-#       = comment.created_at.strftime("%m/%d %H:%M")
+
+.user_fav
+  お気に入り
+  = @user.fav_plans.count
+  - @user.fav_plans.each do |favorite|
+    -# = favorite.name
+    = link_to "#{favorite.name}", plan_path(favorite)
+    -# = link_to plan_favorite_path(favorite), method: :delete
+
+.alluser
+  - @alluser.each do |user|
+    = link_to "#{user.name} = #{user.plans.count}", user_path(user.id), method: :get
+
+.ranking
+  .ranking_comment
+    コメントが多い順
+    - @plan_comment_ranking.each do |rank|
+      = link_to "#{rank.name} コメント数#{rank.comments.count}", plan_path(id: rank.id), method: :get
+      担当者
+      - rank.users.first(1).each do |user|
+        = user.name
+  .ranking_fav
+    いいねが多い順
+    - @plan_fav_ranking.each do |rank|
+      = rank.name
+      = link_to "#{rank.name} イイね数#{rank.favorites.count}", plan_path(id: rank.id), method: :get
+
