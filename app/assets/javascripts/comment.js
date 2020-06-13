@@ -1,7 +1,7 @@
 $(function(){
   function buildHTML(comment){
     if ( comment.image ){
-      var html = `<div class="side__form__comments__comment">
+      var html =`<div class="side__form__comments__comment">
                     <div class="body">
                       <div class="body__text">
                         ${comment.text}
