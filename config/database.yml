@@ -52,3 +52,9 @@ production:
   database: tech-board1_production
   username: tech-board1
   password: <%= ENV['TECH-BOARD1_DATABASE_PASSWORD'] %>
+
+production:
+  <<: *default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
