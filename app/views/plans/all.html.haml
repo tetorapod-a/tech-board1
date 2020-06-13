@@ -16,12 +16,12 @@
       - @plans.each do |plan|
         %tr
           %td= plan.name
-          %td= plan.created_at.strftime('%Y/%m/%d')
+          -# %td= plan.created_at.strftime('%Y/%m/%d')
           %td= plan.place
           %td= plan.client
           %td= plan.body1
           %td= plan.detail
-          %td= plan.limit.strftime('%m/%d')
+          -# %td= plan.limit.strftime('%m/%d')
           %td= link_to 'Show', plan
           %td= link_to 'Edit', edit_plan_path(plan)
           %td= link_to 'Destroy', plan, method: :delete, data: { confirm: 'Are you sure?' }
