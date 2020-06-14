@@ -1,32 +1,40 @@
-.plans
-  %p#notice= notice
-  %h1 施工依頼一覧
-  %table
-    %thead
-      %tr
-        %th 現場名
-        %th 作成日時
-        %th 施工場所
-        %th 客先担当者
-        %th 工事内容
-        %th 備考
-        %th 希望完了日時
-        %th{:colspan => "3"}
-    %tbody
-      - @plans.each do |plan|
-        %tr
-          %td= plan.name
-          -# %td= plan.created_at.strftime('%Y/%m/%d')
-          %td= plan.place
-          %td= plan.client
-          %td= plan.body1
-          %td= plan.detail
-          -# %td= plan.limit.strftime('%m/%d')
-          %td= link_to 'Show', plan
-          %td= link_to 'Edit', edit_plan_path(plan)
-          %td= link_to 'Destroy', plan, method: :delete, data: { confirm: 'Are you sure?' }
-  %br/
-.plans__new
-  = link_to 'New Plan', new_plan_path
+.all_plan
+  .plans__new
+    .plans__new__btn
+      .sss
+        = icon("fas", "plus", id: "plus")
+        = link_to 'New Plan', new_plan_path
+
+  .plans
+    %p#notice= notice
+    %h1 施工依頼一覧
+    .table1
+      .title
+        .title__limit 
+          期日
+        .title__name 
+          件名
+        .title__user 
+          担当者
+        .title__created 
+          作成日時
+        .title__edit
+        .title__destroy
+      .bottom
+        - @newplan.each do |plan|
+          .body
+            .body__limit
+              = plan.limit.strftime('%m/%d')
+            .body__name
+              = link_to "#{plan.name}", plan_path(id: plan.id), method: :get
+            .body__user
+              - plan.users.first(1).each do |user|
+                = user.name
+            .body__create
+              = plan.created_at.strftime('%Y年%m月%d日')
+            .body__edit
+              = link_to '編集', edit_plan_path(plan)
+            .body__destroy
+              = link_to '削除', plan, method: :delete, data: { confirm: 'Are you sure?' }
 
 
