@@ -8,17 +8,39 @@ $main-pink: #F98A8A;
 //   height: 100vh;
 //   font-size: 15px;
 // }
+.plan__show{
+  display: flex;
+  background-color: rgb(163,209,206);
+}
 
 .main {
-  float: left;
-  
   background-color: #ddd;
   width: 60%;
-  height: calc(100vh - 78px);
+  // height: calc(100vh - 78px);
   padding: 20px 30px;
   &__edit{
+    display: flex;
+    &__favorite{
+      background-color: #dbdb70;
+      margin-right: 30px;
+      width: 80px;
+      height: 40px;
+      text-align: center;
+      line-height: 40px;
+      a{
+        text-decoration: none;
+        color: $main-black;
+        color: $main-white;
+        text-shadow: 0 0 3px $main-black;
+        font-size: 20px;
+      }
+      a:hover{
+        background-color: #EAEAE0;
+        color: black;
+        text-shadow: none;
+      }
+    }
     &-btn{
-      margin-left: 600px;
       width: 70px;
       height: 40px;
       border-radius: 3px;
@@ -26,14 +48,48 @@ $main-pink: #F98A8A;
       background-color: $main-green;
       font-size: 20px;
       line-height: 40px;
-      text-decoration: none;
+      transition: all .3s;
       a{
         text-decoration: none;
         color: $main-black;
         color: $main-white;
-      text-shadow: 0 0 3px $main-black;
+        text-shadow: 0 0 3px $main-black;
+      }
+      a:hover{
+        background-color: $main-green;
+        color: black;
+        text-shadow: none;
       }
     }
+    &-btn:hover{
+      opacity: 0.8;
+    }
+    &-destroy {
+      width: 70px;
+      height: 40px;
+      border-radius: 3px;
+      text-align: center;
+      background-color: rgb(234,164,133);
+      font-size: 20px;
+      line-height: 40px;
+      transition: all .3s;
+      margin-left: 30px;
+      a{
+        text-decoration: none;
+        color: $main-black;
+        color: $main-white;
+        text-shadow: 0 0 3px $main-black;
+      }
+      a:hover{
+        background-color: rgb(234,164,133);
+        color: black;
+        text-shadow: none;
+      }
+    }
+    &-destroy:hover{
+      opacity: 0.7;
+    }
+
   }
   &__info{
     background-color: $main-white;
@@ -161,53 +217,81 @@ $main-pink: #F98A8A;
 
 
 .side{
-  background-color: #ECD070;
-  height: calc(100vh - 78px);
+  background-color: #4285F4;
   width: 30%;
-  float: left;
+  margin-left: 5%;
   &__form{
     &__image{
     
     }
     &__comments{
-      background-color: #83BAD6;
-      height: calc(100vh - 250px);
+      background-color: white;
+      height: calc(100vh - 130px);
       overflow: scroll;
       &__comment{
-        display: flex;
+        margin-bottom: 5px;
+        border-bottom: 1px solid #ddd;
         .body{
-          &__text{}
-          &__image{}
+          margin-left: 5px;
+          &__text{
+            margin-bottom: 3px;    
+          }
+          &__image{
+            .content__image{
+              height: 100px;
+            }
+          }
         }
         .info{
-          margin-left: 10px;
-          &__name{}
+          display: flex;
+          font-size: 0.8em;
+          margin-left: 5px;
+          &__name{
+            margin-right: 10px;
+          }
           &__date{}
         }
       }
     }
     &__input{
+      width: 100%;
     form{
       position: absolute;
-      bottom: 10px;
+      bottom: 5px;
+      width: 30%;
     
       .side__form__input__text{
         display: flex;
+        
         .form__text{
-          width: 70%;
+          width: 80%;
+          margin-left: 5px;
+          height: 50px;
         }
         .form__mask{
-        
+        font-size: 40px;
         .icon{
-          font-size: 60px;
-          color: white;
+          // font-size: 60px;
+          color: #4285F4;
           cursor: pointer;
+          position: relative;
+          right: 35px;
+          top: 10px;
+          font-size: 30px;
         }
       }
     }
       .hidden{
         display: none;
         cursor: pointer;
+      }
+      .follow-btn{
+        width: 50px;
+        color: white;
+        height: 50px;
+        border: 1px solid white;
+        background-color: #4285F4;
+        font-size: 18px;
       }
     }
 

@@ -2,95 +2,133 @@
 -# %script{:src => "https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"}
 -# %script{:src => "https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/js/lightbox.min.js", :type => "text/javascript"}
 
-.plan__favorite
-  = render 'favorites/favorite.html.haml'
+.plan__show
 
-.main
-  .main__edit
-    .main__edit-btn
-      = link_to '編集', edit_plan_path(@plan), class: "editbtn"
+  .side
+    .side__form
+      -# .side__form__image
+      -#   画像一覧
+      .side__form__comments
+        - if @comments
+          - @comments.each do |comment|
+            .side__form__comments__comment
+              .info
+                .info__name
+                  = comment.user.name
+                .info__date
+                  = comment.created_at.strftime("%m/%d %H:%M")
 
-  .main__info
-    .main__info__left
-      .main__info__left-name
+              .body
+                .body__text
+                  = comment.content
+                .body__image
+                  = image_tag comment.image.url,  class: 'content__image' if comment.image.present?
+                  = link_to "印刷", comment.image.url, {"data-lightbox": "a"} if comment.image?
+                  -# = image_tag comment.image.url, {"data-lightbox": "a"}, class: 'content__image' if comment.image.present?
+      .side__form__input
+        = form_with(model: [@plan, @comment], local: true, id: 'new_comment') do |form|
+          .side__form__input__text
+            = form.text_area :content, class: 'form__text'
+            .form__mask
+              = form.label :image, class: 'form__mask__image' do
+                = icon('fas', 'file-image', class: 'icon')
+                = form.file_field :image, class: 'hidden'
+            = button_tag type: 'submit', class: "follow-btn" do
+              = icon('fa', 'paper-plane')
+
+
+  .main
+    .main__edit
+      .main__edit__favorite
+        = render 'favorites/favorite.html.haml'
+
+      .main__edit-btn
+        = link_to '編集', edit_plan_path(@plan), class: "editbtn"
+      .main__edit-destroy  
+        = link_to '削除', @plan, method: :delete, data: { confirm: '削除しますか?' }
+
+    .main__info
+      .main__info__left
+        .main__info__left-name
+          %p1
+            現場名:
+          %p2
+            = @plan.name
+        .main__info__left-client
+          %p1
+            顧客:
+          %p2
+            = @plan.client
+      .main__info__right
+        .main__info__right-user
+          %p1
+            担当者:
+          %p2
+            - @plan.users.first(1).each do |user|
+              = user.name
+        .main__info__right-place
+          %p1
+            施工場所:
+          %p2
+            = link_to "#{@plan.place}", "https://www.google.co.jp/maps/@34.6733083,135.4969132,15z#{@plan.place_url}"
+    .main__work
+      .main__work__left
         %p1
-          現場名:
-        %p2
-          = @plan.name
-      .main__info__left-client
-        %p1
-          顧客:
-        %p2
-          = @plan.client
-    .main__info__right
-      .main__info__right-user
-        %p1
-          担当者:
-        %p2
-          - @plan.users.first(1).each do |user|
-            = user.name
-      .main__info__right-place
-        %p1
-          施工場所:
-        %p2
-          = link_to "#{@plan.place}", "https://www.google.co.jp/maps/@34.6733083,135.4969132,15z#{@plan.place_url}"
-  .main__work
-    .main__work__left
-      %p1
-        施工種別:
-      .main__work__left-1
-        = @plan.body1
-      .main__work__left-2
-        = @plan.body2
-      .main__work__left-3
-        = @plan.body3
-      .main__work__left-4
-        = @plan.body4
-    .main__work__right
-      %iframe(src="//www.google.com/maps/embed/v1/place?key=AIzaSyDw8NcA4dR-YKlh44tp6FaQpX-9zuUHjOI&q=#{@plan.place_url}&zoom=14")
-  .main__note
-    %p3
-      備考・現場状況など
-    .main__note-site
-      = @plan.detail
-    .main__note-member
+          施工種別:
+        .main__work__left-1
+          = @plan.body1
+        .main__work__left-2
+          = @plan.body2
+        .main__work__left-3
+          = @plan.body3
+        .main__work__left-4
+          = @plan.body4
+      .main__work__right
+        %iframe(src="//www.google.com/maps/embed/v1/place?key=AIzaSyDw8NcA4dR-YKlh44tp6FaQpX-9zuUHjOI&q=#{@plan.place_url}&zoom=14")
+    .main__note
       %p3
-        決定メンバー
-      .list
-        - @plan.users.each do |user|
-          = user.name
+        備考・現場状況など
+      .main__note-site
+        = @plan.detail
+      .main__note-member
+        %p3
+          決定メンバー
+        .list
+          - @plan.users.each do |user|
+            = user.name
 
-.side
-  .side__form
-    .side__form__image
-      画像一覧
-    .side__form__comments
-      - if @comments
-        - @comments.each do |comment|
-          .side__form__comments__comment
-            .body
-              .body__text
-                = comment.content
-              .body__image
-                = link_to "a", comment.image.url, {"data-lightbox": "a"} if comment.image?
-                = image_tag comment.image.url, size: 150, class: 'content__image' if comment.image.present?
-                -# = image_tag comment.image.url, {"data-lightbox": "a"}, class: 'content__image' if comment.image.present?
-            .info
-              .info__name
-                = comment.user.name
-              .info__date
-                = comment.created_at.strftime("%m/%d %H:%M")
-    .side__form__input
-      = form_with(model: [@plan, @comment], local: true, id: 'new_comment') do |form|
-        .side__form__input__text
-          = form.text_area :content, class: 'form__text'
-          .form__mask
-            = form.label :image, class: 'form__mask__image' do
-              = icon('fas', 'file-image', class: 'icon')
-              = form.file_field :image, class: 'hidden'
-        = button_tag type: 'submit', class: "follow-btn" do
-          = icon('fa', 'paper-plane')
-          Send
+  -# .side
+  -#   .side__form
+  -#     -# .side__form__image
+  -#     -#   画像一覧
+  -#     .side__form__comments
+  -#       - if @comments
+  -#         - @comments.each do |comment|
+  -#           .side__form__comments__comment
+  -#             .info
+  -#               .info__name
+  -#                 = comment.user.name
+  -#               .info__date
+  -#                 = comment.created_at.strftime("%m/%d %H:%M")
+
+  -#             .body
+  -#               .body__text
+  -#                 = comment.content
+  -#               .body__image
+  -#                 = image_tag comment.image.url,  class: 'content__image' if comment.image.present?
+  -#                 = link_to "印刷", comment.image.url, {"data-lightbox": "a"} if comment.image?
+  -#                 -# = image_tag comment.image.url, {"data-lightbox": "a"}, class: 'content__image' if comment.image.present?
+  -#     .side__form__input
+  -#       = form_with(model: [@plan, @comment], local: true, id: 'new_comment') do |form|
+  -#         .side__form__input__text
+  -#           = button_tag type: 'submit', class: "follow-btn" do
+  -#             = icon('fa', 'paper-plane')
+  -#           = form.text_area :content, class: 'form__text'
+  -#           .form__mask
+  -#             = form.label :image, class: 'form__mask__image' do
+  -#               = icon('fas', 'file-image', class: 'icon')
+  -#               = form.file_field :image, class: 'hidden'
+            
 -# %p#notice= notice
 -# %p
 -#   %strong 現場名:
