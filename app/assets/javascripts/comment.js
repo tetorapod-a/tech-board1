@@ -2,6 +2,14 @@ $(function(){
   function buildHTML(comment){
     if ( comment.image ){
       var html =`<div class="side__form__comments__comment">
+                    <div class="info">
+                      <div class="info__name">
+                        ${comment.user_name}
+                      </div>
+                      <div class="info__date">
+                        ${comment.time}
+                      </div>
+                    </div>              
                     <div class="body">
                       <div class="body__text">
                         ${comment.text}
@@ -11,31 +19,23 @@ $(function(){
                         <img class="content__image" src="${comment.image}" width="150" height="150">                        
                       </div>
                     </div>
-                    <div class="info">
-                      <div class="info__name">
-                        ${comment.user_name}
-                      </div>
-                      <div class="info__date">
-                        ${comment.time}
-                      </div>
-                    </div>
                   </div>`
       return html;
     } else {
       var html =`<div class="side__form__comments__comment">
-                  <div class="body">
-                    <div class="body__text">
-                      ${comment.text}
-                    </div>
-                    <div class="body__image">
-                    </div>
-                  </div>
                   <div class="info">
                     <div class="info__name">
                       ${comment.user_name}
                     </div>
                     <div class="info__date">
                       ${comment.time}
+                    </div>
+                  </div>            
+                  <div class="body">
+                    <div class="body__text">
+                      ${comment.text}
+                    </div>
+                    <div class="body__image">
                     </div>
                   </div>
                 </div>`
