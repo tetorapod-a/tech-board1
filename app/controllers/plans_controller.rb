@@ -4,6 +4,8 @@ class PlansController < ApplicationController
   
   def all 
   @plans = Plan.all
+  @newplan = Plan.all.order("id DESC")
+
   end
 
   # GET /plans
