@@ -1,25 +1,33 @@
-# README
+# Tech-Board
+ホワイトボードのように予定を共有できるWEBアプリケーション
+### 開発環境
+- ruby 2.5.1
+- Rails 5.2.4.3
+- mysql
+- heroku
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Purpose
+- 営業先でも予定を見ることができるようにするため
+- ホワイトボードの予定一覧性を保持し、簡単に予定の変更をできるようにするため
+- 電話連絡、FAX送信などの業務を軽減するため
+- リモートでの業務をサポートするため
+- 土木・建築業界の電子化をすすめるため
 
-Things you may want to cover:
+### Description
+- ユーザー登録機能
+- 現場登録機能
+- チャット機能
 
-* Ruby version
+### Usage
+#### 1.ユーザー登録機能について
+名前とEmail、Passwordでユーザーと新規登録できます。任意で電話番号も登録出来ます。
+登録した情報はMypageから、確認・編集が出来ます。
 
-* System dependencies
+#### 2.現場登録機能について
+各ユーザーは担当する現場を新規作成が出来ます。新規作成画面では日時や作業内容、緯度経度から地図を埋め込むことが出来ます。新規作成を行うとTopページのカレンダーに表示され、変更があれば直感的に操作することができます。地図の印刷やFAX送信など煩わしい作業から開放されます。
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
+#### 3.チャット機能について
+現場を新規作成すると、その予定内でのチャットが有効になります。各担当者は全作業員に情報を発信することができます。情報を文字にすることで確実に伝えることが出来ます。細かい指示事項を画像を添付し送信することで、簡潔に情報が伝えることが出来ます。担当者が離れていても状況を把握することが出来ます。
 
 # tech-board DB設計
 ## usersテーブル 
