@@ -1,5 +1,10 @@
 # Tech-Board
 ホワイトボードのように予定を共有できるWEBアプリケーション
+https://techboard-heroku.herokuapp.com/
+- テストアカウント
+ユーザー名　 testman
+Email:     test@test
+pass:      111111
 ### 開発環境
 - ruby 2.5.1
 - Rails 5.2.4.3
