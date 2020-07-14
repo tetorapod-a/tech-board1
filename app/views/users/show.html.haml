@@ -91,12 +91,42 @@
         
       
   .mypage__index
+    .plans
+      %p#notice= notice
+      %h1 施工依頼一覧
+      .table1
+        .title
+          .title__limit 
+            期日
+          .title__name 
+            件名
+          .title__created 
+            作成日時
+          .title__edit
+          .title__destroy
+        .bottom
+          - @newplan.each do |plan|
+            .body
+              .body__limit
+                = plan.limit.strftime('%m/%d')
+              .body__name
+                = link_to "#{plan.name}", plan_path(id: plan.id), method: :get
+              .body__create
+                = plan.created_at.strftime('%Y年%m月%d日')
+              .body__edit
+                = link_to '編集', edit_plan_path(plan)
+              .body__destroy
+                = link_to '削除', plan, method: :delete, data: { confirm: 'Are you sure?' }
 
 
-.allplans
-  = link_to "allplans", plan_plans_all_path(@plans), method: :get
-.user_name
-  = current_user.name
+
+
+
+
+
+
+
+
 .new_plan
   最新plan(５件表示)
   - @newplan.first(5).each do |plan|
@@ -113,25 +143,11 @@
 .count_comment
   全てのコメント数
   = @user.comments.count
--# .user_comment
--#   - @user.comments.first(5).each do |comment|
--#     = comment.content
--#     .body__image
--#       = link_to "a", comment.image.url, {"data-lightbox": "a"} if comment.image?
--#       = image_tag comment.image.url, size: 150, class: 'content__image' if comment.image.present?
--#       -# = image_tag comment.image.url, {"data-lightbox": "a"}, class: 'content__image' if comment.image.present?
--#     .info__name
--#       = comment.user.name
--#     .info__date
--#       = comment.created_at.strftime("%m/%d %H:%M")
-
 .user_fav
   お気に入り
   = @user.fav_plans.count
   - @user.fav_plans.each do |favorite|
-    -# = favorite.name
     = link_to "#{favorite.name}", plan_path(favorite)
-    -# = link_to plan_favorite_path(favorite), method: :delete
 
 .alluser
   - @alluser.each do |user|
